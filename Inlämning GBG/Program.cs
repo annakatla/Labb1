@@ -8,35 +8,35 @@ namespace Labb1
         static void Main(string[] args)
         {
             //Be användaren att mata in en text.
-            Console.WriteLine("Skriv in en jäkligt lång sträng: ");
+            Console.WriteLine("Knappa loss på tangentbordet. Avsluta med ENTER: ");
             
             //Spara texten i en string.
-            string userInput = Console.ReadLine().ToLower().Trim();
+            string userInput = Console.ReadLine();
 
-            //Skapa en variabel för att kunna summera:
+            //Skapa en variabel för att kunna summera längre fram:
             long sumOfNumbers = 0;
 
-            //Två loopar, söker igenom alla index. 
+            //Två loopar, som söker igenom och jämför alla index. 
             for (int i = 0; i < userInput.Length; i++)
             {
-                //Skapa bool för att komma ur loopar längre fram.. 
+                //Skapa bool för att komma ur loop längre fram.. Sätt den i början av första for-loopen för att "nollställa" den vid varje jämförelse.
                 bool number = true;
 
                 for (int j = i + 1; j < userInput.Length; j++)
                 {
-                //  Sök efter delsträngar där första och sista indexet i delsträngen är samma siffra.
+                    //Skapa delsträng där första och sista indexet i delsträngen är samma siffra.
                     if (userInput[i] == userInput[j])
                     {
                         string subString1 = userInput.Substring(0, i);
                         string subString2 = userInput.Substring(i, j-i+1);
                         string subString3 = userInput.Substring(j+1);
 
-                        //Kolla igenom efter bokstäver i den substräng som skall markeras med annan färg i eventuell utskrift.
+                        //Leta efter bokstäver i den delsträng som skall markeras med annan färg i eventuell utskrift.
                         for (int c = 0; c < subString2.Length; c++)
                         {
-                            //Om strängen har har bokstav i sig, gör inget.
+                            //Om strängen har har bokstav i sig, gör inget (= Ändra bool för att inte gå in i nästa if-sats.)
                             if (!char.IsDigit(subString2[c]))
-                            {
+                            {   
                                 number = false;
                             }
                         }
@@ -60,7 +60,7 @@ namespace Labb1
             Console.WriteLine();
 
             //Skriv ut summan i konsolen.
-            Console.WriteLine($"Summan av de inskrivna talen är: {sumOfNumbers}.");
+            Console.WriteLine($"Summan av de rödmarkerade talen är: {sumOfNumbers}.");
 
          }
         
